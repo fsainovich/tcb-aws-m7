@@ -1,0 +1,20 @@
+# Ansible playbook para instalar Magento (ecommerce) 100% automatizado.
+# Altere o arquivo hosts.yml com o seu IP publico da instancia EC2.
+# Utilize a chave privada da sua instancia EC2 conforme abaixo
+# Como rodar: ansible-playbook -i hosts.yml ansible-magento2.yml -k -vvv --private-key ~/.ssh/id_rsa --become
+# Código adaptado de https://github.com/CajuCLC/ansible-magento2
+
+---
+
+- name: Instala Apache, PHP + Magento e/ou Varnish
+  hosts: magento
+  user: ec2-user
+
+  roles:
+    - common
+    - httpd
+    - php
+    - composer
+    - mysql
+    - redis
+    - magento
